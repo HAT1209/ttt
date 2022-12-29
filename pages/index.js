@@ -202,7 +202,7 @@ export default function Index() {
     )
   }, [visible, status, message])
 
-  //================Scan QR===========================================================
+  //================Scan QR=================================
     const handleErrorWebCam = (error) => {
       alert("Some thing's wrong");
     }
@@ -241,19 +241,18 @@ export default function Index() {
         });
       }
     }
+    const handleWindowResize= () => {
+      setWindowSize(getWindowSize());
+    }
     const renderQRscan = useMemo(() => {
       return (
         <div className="flex flex-col justify-center items-center">
           <QrButton onClick={() => {
-            if (window.innerWidth == 768) {
-             
-              setIsShown(current => !current);
-            }
-            else{
+            if (handleWindowResize) {
               alert("Can not connect to camera in this device")
-              
               return;
             }
+            setIsShown(current => !current);
           }} />
   
           {isShown && <QrReader
