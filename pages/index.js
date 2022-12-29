@@ -220,8 +220,9 @@ export default function Index() {
     return (
       <div className="flex flex-col justify-center items-center">
         <QrButton onClick={() => {
-         
+                 
           setIsShown(current => !current);
+          
         }} />
 
         {isShown && <QrReader
