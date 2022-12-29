@@ -75,6 +75,9 @@ export default function LuckySpin() {
             const que1 = query(ref(db, "event_rewards"), orderByChild("eventId"), equalTo(EventID));
             //  Load data
             const loadEventPaticipant = get(que2);
+            // get(que2).then((snapshot) => {
+            //     console.log(snapshot.exists());
+            // })
             const loadEvent = get(que3);
             const loadEventReward = get(que1);
             let combined_promise = Promise.all([loadEventPaticipant, loadEvent, loadEventReward]);
@@ -106,6 +109,7 @@ export default function LuckySpin() {
             });
 
             const dataset = await asyncData();
+            
             // Event Paticipant
             if (dataset[0].exists()) {
                 const rawData = dataset[0].val();
@@ -115,14 +119,6 @@ export default function LuckySpin() {
                     console.log('Not found player');
                     router.push('/');
                 };
-                // dataEventParticipant.forEach((val, idx) => {
-                //     val.ID = Object.keys(rawData)[idx];
-                //     get(child(ref(db), "users/" + val.createBy)).then((snapshot) => {
-                //         if (snapshot.exists()) {
-                //             val.pic = snapshot.val().pic;
-                //         }
-                //     })
-                // })
                 const online = dataEventParticipant.filter(val => val.status === 1).length;
                 const filted = dataEventParticipant.filter(val => (val.idReward === "" && val.status === 1));
                 setPlayerList(rawData);
@@ -157,8 +153,8 @@ export default function LuckySpin() {
                 dataEventReward.sort(compare);
                 setRewardList(dataEventReward);
                 setRemainRewardList(dataEventReward.filter((val) => (val.quantityRemain > 0)));
-                setLoadedData(true);
             }
+            setLoadedData(true);
         }
 
         loadData();
@@ -317,14 +313,10 @@ export default function LuckySpin() {
     // Real time
     useEffect(() => {
         dispatch(incognitoEvent({ eventId: EventID }));
-        getData()
+        getData();
     }, [])
 
     useEffect(() => {
-        if (EventID === "") return;
-
-        // Nếu đến trang trong trạng thái chưa đăng ký participant, đưa đến trang nhập thông tin
-        if (participantId === "") router.push('/event/info');
         fetchDB();
 
         const setOnlineStatus = (status) => {
@@ -346,6 +338,7 @@ export default function LuckySpin() {
             })
         }
 
+        setOnlineStatus(1);
         const onlineStatus = setInterval(() => setOnlineStatus(1), 1000);
         window.addEventListener('beforeunload', () => setOnlineStatus(2));
 
@@ -354,7 +347,7 @@ export default function LuckySpin() {
             clearInterval(onlineStatus);
             window.removeEventListener('beforeunload', () => setOnlineStatus(2));
         }
-    }, [EventID])
+    }, [])
 
     // Điều chỉnh danh sách người chơi được điều chỉnh
     useEffect(() => {
@@ -396,9 +389,10 @@ export default function LuckySpin() {
             <div className="mt-2 w-full flex gap-4 px-2">
                 <Button fontSize={"20px"} content={"THOÁT"} primaryColor={"#FF6262"} isSquare={true} marginY={0}
                     onClick={() => {
-                        dispatch(removePlayerState);
-                        dispatch(removeUserPlaying);
-                        router.push('/');
+                        dispatch(incognitoEvent({ eventId: "" }));
+                        setTimeout(() => {
+                            router.push('/');
+                        }, 1000);
                     }} />
                 <Button fontSize={"20px"} content={"HỦY"} primaryColor={"#3B88C3"} isSquare={true} marginY={0} onClick={() => { document.getElementById("exitOverlay").classList.toggle('hidden') }} />
             </div>
