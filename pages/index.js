@@ -241,14 +241,11 @@ export default function Index() {
         });
       }
     }
-    const handleWindowResize= () => {
-      setWindowSize(getWindowSize());
-    }
     const renderQRscan = useMemo(() => {
       return (
         <div className="flex flex-col justify-center items-center">
           <QrButton onClick={() => {
-            if (handleWindowResize) {
+            if (window.innerWidth > 768) {
               alert("Can not connect to camera in this device")
               return;
             }
