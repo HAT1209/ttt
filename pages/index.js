@@ -202,25 +202,7 @@ export default function Index() {
     )
   }, [visible, status, message])
 
-  // const handleClick = event => {
-  //   setIsShown(current => !current);
-  // };
-  
-    // const [scanResultFile, setScanResultFile] = useState('');
-    // const qrRef = useRef(null)
-  
-    //  const handleErrorFile = (error) => {
-    //      alert(error)
-    //   }
-    //   const  handleScanFile = (result) => {
-    //     if  (result) {
-    //        setScanResultFile(result)
-    //     }
-    //   }
-    // const onScanFile = () => {
-    //   if(qrRef && qrRef.current) qrRef.current.openImageDialog()
-    // }
-
+  //================Scan QR===========================================================
     const handleErrorWebCam = (error) => {
       alert("Some thing's wrong");
     }
@@ -263,7 +245,7 @@ export default function Index() {
       return (
         <div className="flex flex-col justify-center items-center">
           <QrButton onClick={() => {
-            if (window.innerWidth > 768) {
+            if (handleErrorWebCam ) {
               alert("Can not connect to camera in this device")
               return;
             }
@@ -276,12 +258,7 @@ export default function Index() {
             constraints={{ audio: false, video: { facingMode: 'environment' } }}
             onError={handleErrorWebCam}
             onScan={handleScanWebCam}
-          />}
-  
-          {isShown && (
-            <div>
-              <h3> Scanned  Code: <a href={scanResultWebCam}>{scanResultWebCam}</a></h3>
-            </div>)}
+          />}          
         </div>
       )
     }, [isShown, scanResultWebCam])
