@@ -245,13 +245,11 @@ export default function Index() {
       return (
         <div className="flex flex-col justify-center items-center">
           <QrButton onClick={() => {
-            if (handleErrorWebCam) {
+            if (window.innerWidth > 768) {
               alert("Can not connect to camera in this device")
               return;
             }
-            if(handleScanWebCam){
-              setIsShown(current => !current);
-            }
+            setIsShown(current => !current);
           }} />
   
           {isShown && <QrReader
