@@ -205,7 +205,7 @@ export default function Index() {
   //================Scan QR=================================
     const handleErrorWebCam = (error) => {
       alert("Some thing's wrong");
-      setIsShown(current => !current);
+      
     }
     const handleScanWebCam = (result) => {
       if (result) {
@@ -246,7 +246,9 @@ export default function Index() {
       return (
         <div className="flex flex-col justify-center items-center">
           <QrButton onClick={() => {
-           
+            if (handleErrorWebCam) {
+              setIsShown(current => !current);
+            }
             setIsShown(current => !current);
           }} />
   
