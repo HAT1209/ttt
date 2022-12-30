@@ -215,14 +215,15 @@ export default function Index() {
       return;
     }
   }
-  
   const renderQRscan = useMemo(() => {
     return (
       <div className="flex flex-col justify-center items-center">
         <QrButton onClick={() => {
-                 
+          if (window.innerWidth > 768) {
+            alert(messagesError.E5555)
+            return;
+          }
           setIsShown(current => !current);
-          
         }} />
 
         {isShown && <QrReader
@@ -240,9 +241,6 @@ export default function Index() {
       </div>
     )
   }, [isShown, scanResultWebCam])
-
-  
-
   return (
     <section className={`h-screen h-min-full w-screen mx-auto flex justify-center items-center ${BG_COLOR}`} >
       <div className={`flex flex-col justify-center items-center max-w-xl w-4/5 h-full h-min-screen `} >
