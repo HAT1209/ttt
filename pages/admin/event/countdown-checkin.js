@@ -334,7 +334,7 @@ function CountDownCheckIn() {
             {
                 loadedData ?
                     (
-                        <section className="flex flex-col justify-center items-center h-screen w-screen">
+                        <section className="flex flex-col justify-center items-center h-screen w-screen bg-gradient-to-tr from-[#C8EFF1] via-[#B3D2E9] to-[#B9E4A7]">
                             {renderTitleandH1}
                             {/* id room */}
                             {renderPinCode}
