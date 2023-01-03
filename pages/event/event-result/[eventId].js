@@ -141,7 +141,7 @@ export default function EventResult() {
     <>
       {
         loadedData ?
-          <section className={`overflow-hidden flex flex-col justify-evenly h-screen ${isAdmin ? "bg-white" : BG}`}>
+          <section className={`overflow-hidden flex flex-col justify-evenly h-screen ${isAdmin ? "bg-gradient-to-tr from-[#C8EFF1] via-[#B3D2E9] to-[#B9E4A7]" : BG}`}>
             <div className="flex flex-col items-center justify-center h-full">
               <h1 className="uppercase text-4xl py-0 font-bold text-[#004599] mt-6">
                 {event.title}

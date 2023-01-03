@@ -211,7 +211,7 @@ function EventDetail() {
         {
             loadedData ?
             (
-                <div className="flex flex-col justify-evenly items-center h-screen w-screen">
+                <div className="flex flex-col justify-evenly items-center h-screen w-screen bg-gradient-to-tr from-[#C8EFF1] via-[#B3D2E9] to-[#B9E4A7]">
                     {/* test event name */}
                     {renderTitle}
                     {renderEventID}

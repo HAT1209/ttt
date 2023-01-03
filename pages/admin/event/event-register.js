@@ -107,7 +107,7 @@ export default function EventRegister() {
 
     const renderTitle = useMemo(() => {
         return (
-            <div className="w-full h-[70px]">
+            <div className="w-full h-[70px] ">
                 <Input primaryColor={LEFT_COLOR} secondaryColor={RIGHT_COLOR} content={"Tên sự kiện"} maxLength={"100"} value={title} onChange={onChangeTitle} />
             </div>
         );
@@ -123,7 +123,7 @@ export default function EventRegister() {
 
     const renderMaxTicket = useMemo(() => {
         return (
-            <div className="w-full">
+            <div className="w-full ">
                 <Input primaryColor={"#003B93"} secondaryColor={"#00F0FF"} content={"Giới hạn người tham gia"} type={"number"} min={"1"} value={maxTicket} onChange={onChangeMaxTicket} />
             </div>
         );
@@ -131,7 +131,7 @@ export default function EventRegister() {
 
     const renderCheckbox = useMemo(() => {
         return (
-            <div className="w-full flex justify-center items-center">
+            <div className="w-full flex justify-center items-center ">
                 <div className="w-[70%]">
                     <p style={contentCSS} className="font-bold"> Cho phép người tham gia không cần đăng nhập </p>
                 </div>
@@ -159,7 +159,7 @@ export default function EventRegister() {
     {
         loadedData ? 
         (
-            <section className="flex flex-col overflow-y-auto overflow-x-hidden items-center justify-between h-screen w-screen">
+            <section className="flex flex-col overflow-y-auto overflow-x-hidden items-center justify-between h-screen w-screen ">
                 {renderHeader}
                 <div className="w-full flex items-center justify-center">
                     <div className="flex flex-col items-center justify-center w-4/5 max-w-xl">
